@@ -9,7 +9,7 @@ Una plantilla moderna, elegante y completamente responsive diseñada especialmen
 
 ## Vista previa
 
-![Estudio Jurídico Preview](public/preview.png)  
+![Estudio Jurídico Preview](public/preview.jpeg)  
 _(Captura de pantalla de la página principal – ver sección "Captura de pantalla" más abajo para saber cómo agregarla)_
 
 ## ✨ Características principales
