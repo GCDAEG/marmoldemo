@@ -1,5 +1,8 @@
+"use client";
 import { Section } from "@/components/layout/Section";
 import { SimpleCTAButton } from "@/components/ui/CTAButton";
+import React, { useState } from "react";
+import { X } from "lucide-react"; // Asegúrate de tener lucide-react instalado
 import Image from "next/image";
 const galleryImages = [
   {
@@ -76,6 +79,9 @@ interface GalleryProps {
 }
 
 const Gallery = ({ images = galleryImages }: GalleryProps) => {
+  // Estado para controlar la imagen seleccionada
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
     <Section id="gallery" height="content">
       <div className="flex flex-col gap-12">
@@ -92,7 +98,8 @@ const Gallery = ({ images = galleryImages }: GalleryProps) => {
           {images.map((image) => (
             <div
               key={image.id}
-              className="mb-4 md:mb-6 break-inside-avoid group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300"
+              onClick={() => setSelectedImage(image.src)} // Al hacer clic, guarda la URL
+              className="mb-4 md:mb-6 break-inside-avoid group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
             >
               <Image
                 src={image.src}
@@ -103,18 +110,49 @@ const Gallery = ({ images = galleryImages }: GalleryProps) => {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
               />
 
-              {/* Overlay opcional con hover (puedes quitarlo si no lo quieres) */}
-              <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {/* Overlay opcional con hover */}
+              <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white text-sm font-medium border border-white/40 px-4 py-2 rounded-full backdrop-blur-sm">
+                  Ver imagen
+                </span>
+              </div>
             </div>
           ))}
         </div>
-        <div className="w-full  flex flex-col items-center gap-6">
+
+        <div className="w-full flex flex-col items-center gap-6">
           <h4 className="text-lg md:text-2xl font-semibold">
             ¿Querés disfrutar de todo esto?
           </h4>
           <SimpleCTAButton className="w-fit px-8 py-4" />
         </div>
       </div>
+
+      {/* --- MODAL DE IMAGEN --- */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 z-100 flex items-center justify-center p-4 backdrop-blur-sm transition-all animate-in fade-in duration-300"
+          onClick={() => setSelectedImage(null)} // Cerrar al hacer clic fuera
+        >
+          <button
+            className="absolute top-6 right-6 text-white hover:text-gray-300 transition-colors z-110"
+            onClick={() => setSelectedImage(null)}
+          >
+            <X size={32} />
+          </button>
+
+          <div className="relative max-w-5xl w-full max-h-[90vh] flex justify-center items-center">
+            <Image
+              src={selectedImage}
+              alt="Imagen de galería ampliada"
+              width={1400}
+              height={1000}
+              className="max-h-[90vh] w-auto object-contain rounded-lg"
+              priority
+            />
+          </div>
+        </div>
+      )}
     </Section>
   );
 };
