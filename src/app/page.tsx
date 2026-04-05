@@ -1,8 +1,10 @@
 "use client";
+import HowItWorks from "@/components/layout/Sections/HowItWorks";
 import HeroSection from "../components/layout/Sections/HeroSection";
 import PrdocutCatalog from "../components/layout/Sections/ProductCatalog";
 import WhatsAppChatInput from "@/components/ui/WhatsAppChatInput";
 import { useState } from "react";
+import OurStory from "@/components/layout/Sections/OurStory";
 // export const roboto = Roboto({
 //   subsets: ["latin"],
 //   display: "swap",
@@ -31,14 +33,16 @@ export default function Home() {
     setActiveCategory(cat);
   };
   return (
-    <main className={`min-h-screen w-full font-base bg-background`}>
-      <HeroSection
+    <main className={`min-h-screen w-full font-base bg-background `}>
+      <HeroSection />
+      {/* <RoomsSection /> */}
+      {/* <ServiceSection /> */}
+      <PrdocutCatalog
         activeCategory={activeCategory}
         onCategoryChange={onCategoryChange}
       />
-      {/* <RoomsSection /> */}
-      {/* <ServiceSection /> */}
-      <PrdocutCatalog activeCategory={activeCategory} />
+      <HowItWorks />
+      <OurStory />
       {/* <LocationSection />*/}
       {/* <Testimonials /> */}
       <WhatsAppChatInput />
