@@ -85,7 +85,7 @@ const OurStory = () => {
             </h2>
 
             <p className="text-foreground/70 text-lg mb-8 leading-relaxed">
-              En Marukis, creemos que un buen alfajor es mucho más que un dulce;
+              En Ejemplo, creemos que un buen alfajor es mucho más que un dulce;
               es un abrazo al paladar y un viaje a los recuerdos más lindos.
               Nacimos con la pasión de ofrecer un producto genuino, donde la
               cantidad de dulce de leche no se negocia y la masa se deshace en
