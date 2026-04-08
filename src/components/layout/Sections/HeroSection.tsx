@@ -1,107 +1,64 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Star, ShoppingBag, ArrowDown } from "lucide-react";
-import { Section } from "../Section";
+import { CheckCircle2 } from "lucide-react";
 import { siteConfig } from "@/lib/site/siteConfig";
-import { useLenis } from "lenis/react";
-import Image from "next/image";
+import { Section } from "../Section";
 
 const HeroSection = () => {
   const { hero } = siteConfig;
-  const lenis = useLenis();
 
   return (
     <Section
-      height="screen"
       id="hero"
-      // Quitamos paddings extra, mantenemos el fondo y el desbordamiento oculto
-      className="bg-background border-b border-border overflow-hidden relative flex items-center"
+      height="content"
+      // Eliminamos bordes y ajustamos el padding para que fluya directo al catálogo
+      className="relative  bg-background overflow-hidden"
     >
-      {/* Círculos decorativos sutiles de fondo */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Fondo de cuadrícula sutil (SaaS/Tech vibe) para dar idea de precisión/planos */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]" />
 
-      {/* Contenedor principal: h-full para aprovechar el alto de la Section */}
-      <div className="container mx-auto h-full flex flex-col justify-center relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center w-full">
-          {/* COLUMNA DE TEXTO */}
-          <div className="max-w-2xl flex flex-col gap-4 lg:gap-6 order-2 lg:order-1">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 self-start bg-primary/10 border border-primary/20 text-primary px-3 py-1.5 lg:px-4 lg:py-2 rounded-full text-[10px] lg:text-xs font-bold uppercase tracking-widest shadow-sm"
-            >
-              <Star className="size-3 lg:size-3.5 fill-primary" />
-              {hero.badge || "100% Artesanal"}
-            </motion.div>
+      {/* Resplandor radial muy tenue detrás del texto */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_60%_50%_at_20%_20%,#2563eb08_0%,transparent_100%)] pointer-events-none" />
 
-            {/* Título Principal */}
-            <motion.h1
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground leading-[1.1] tracking-tight"
-            >
-              {hero.title}
-            </motion.h1>
-
-            {/* Subtítulo */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-base sm:text-lg text-foreground/80 max-w-xl leading-relaxed"
-            >
-              {hero.subtitle}
-            </motion.p>
-
-            {/* Botones de Acción */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-3 pt-2"
-            >
-              <button
-                onClick={() => lenis?.scrollTo("#productos")}
-                className="flex items-center gap-2 bg-primary text-white px-6 py-3 lg:px-8 lg:py-4 rounded-(--radius) text-xs lg:text-sm font-bold hover:opacity-90 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-              >
-                <ShoppingBag className="size-4 lg:size-5" />
-                Ver Especialidades
-              </button>
-
-              <button
-                onClick={() => lenis?.scrollTo("#nosotros")}
-                className="flex items-center gap-2 bg-transparent text-foreground px-4 py-3 lg:px-6 lg:py-4 rounded-(--radius) text-xs lg:text-sm font-bold hover:bg-border/60 transition-all"
-              >
-                Nuestra Historia
-                <ArrowDown className="size-3.5 lg:size-4 text-primary" />
-              </button>
-            </motion.div>
-          </div>
-
-          {/* COLUMNA DE IMAGEN */}
+      <div className="max-w-[1200px] mx-auto relative z-10">
+        <div className="flex flex-col items-start max-w-4xl">
+          {/* Píldora de estado (idéntica a la imagen) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            // Alturas controladas (vh) para garantizar que nunca rompa el height="screen"
-            className="relative w-full h-[35vh] sm:h-[45vh] lg:h-[65vh] max-h-150 rounded-2xl overflow-hidden shadow-xl border-4 lg:border-[6px] border-white order-1 lg:order-2"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide mb-8"
           >
-            <div className="absolute inset-0 bg-border flex flex-col items-center justify-center">
-              <Image
-                src="https://i.postimg.cc/4NBtpRF7/1ecb20de-08be-4471-95bd-a7dd68cf7268.png"
-                alt="Alfajores Destacados Marukis"
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                className="object-cover hover:scale-105 transition-transform duration-700"
-              />
-            </div>
+            <CheckCircle2 className="size-4" strokeWidth={2.5} />
+            {hero.badge || "Stock disponible para entrega inmediata"}
           </motion.div>
+
+          {/* Título Masivo y Pesado (Font Black) */}
+          <motion.h1
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-5xl sm:text-6xl md:text-7xl font-black text-primary leading-[1.05] tracking-tight mb-6"
+          >
+            {hero.title || "Mármoles y Granitos de Alta Calidad en Obra."}
+          </motion.h1>
+
+          {/* Subtítulo Gris y Limpio */}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-lg md:text-xl text-foreground/50 leading-relaxed font-medium max-w-2xl"
+          >
+            {hero.subtitle ||
+              "Venta e instalación de mesadas, pisos y revestimientos. Trabajamos con materiales nacionales e importados con terminaciones de precisión."}
+          </motion.p>
+
+          {/* Eliminamos el botón de "Explorar Catálogo". 
+            En el diseño que pasaste, esta sección termina acá y conecta visualmente 
+            de forma directa con el "Explorar Catálogo" del componente de abajo.
+          */}
         </div>
       </div>
     </Section>

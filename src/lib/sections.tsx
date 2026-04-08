@@ -5,9 +5,20 @@ export type NavSection = {
 };
 
 export const sections: NavSection[] = [
-  { id: "hero", label: "Inicio" },
+  {
+    id: "hero",
+    label: "Inicio",
+  },
   {
     id: "catalog",
-    label: "Productos",
+    label: "Catálogo", // O "Productos" / "Materiales"
+  },
+  {
+    id: "como-trabajamos",
+    label: "Proceso",
+  },
+  {
+    id: "nosotros",
+    label: "Nosotros",
   },
 ];

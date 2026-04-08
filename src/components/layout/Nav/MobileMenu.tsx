@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { NavSection } from "@/lib/sections";
 import Link from "next/link";
-import { X, Menu, ShoppingBag, ChevronRight, Store } from "lucide-react";
+import { X, Menu, Calculator, ChevronRight, Gem } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -20,7 +20,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ sections, activeSection }) => {
   const lenis = useLenis();
   const { brand } = siteConfig;
 
-  // Bloquear scroll cuando el menú está abierto
+  // Bloquear el scroll cuando el menú está abierto
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "unset";
@@ -35,26 +35,28 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ sections, activeSection }) => {
 
   return (
     <>
-      {/* HEADER MÓVIL ESTÁNDAR - Altura ajustada y fondo crema */}
-      <nav className="fixed top-0 left-0 w-full h-20 z-100 flex items-center px-4 bg-background backdrop-blur-md border-b border-stone-200 lg:hidden transition-all">
-        <div className="w-full flex justify-between items-center">
-          {/* LOGO - Estilo Rústico con fuente Serif */}
+      {/* HEADER MÓVIL ESTÁNDAR - Estilo SaaS Clean */}
+      <nav className="fixed top-0 left-0 w-full h-20 z-[100] flex items-center px-5 bg-white/90 backdrop-blur-md border-b border-gray-100 lg:hidden transition-all">
+        <div className="w-full flex justify-between items-center max-w-[1200px] mx-auto">
+          {/* LOGO - Tipografía más chica (text-base) y compacta */}
           <Link
             href="/"
-            className="text-xl font-serif font-bold tracking-tight text-foreground flex items-center gap-2"
+            className="text-base font-black tracking-tight text-slate-900 flex items-center gap-2.5 uppercase"
           >
-            <Store className="text-primary size-5" />
-            {brand.name}
+            <div className="bg-blue-50 text-primary p-1.5 rounded-md border border-blue-100 shadow-sm">
+              <Gem className="size-4" strokeWidth={2.5} />
+            </div>
+            {brand.name || "MÁRMOLES"}
           </Link>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1">
             <CartDrawer />
             <Button
               variant="ghost"
               onClick={() => setOpen(true)}
-              className="p-2 h-auto hover:bg-stone-100"
+              className="p-2 h-auto hover:bg-gray-50 rounded-lg text-slate-900"
             >
-              <Menu className="size-6 text-primary" />
+              <Menu className="size-6" />
             </Button>
           </div>
         </div>
@@ -70,33 +72,33 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ sections, activeSection }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 z-110 bg-black/40 backdrop-blur-sm min-h-screen"
+              className="fixed inset-0 z-[110] bg-slate-900/40 backdrop-blur-sm min-h-screen"
             />
 
-            {/* Panel del Menú - Fondo Crema */}
+            {/* Panel del Menú - Estilo App */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 h-full w-[80%] max-w-sm z-[120] bg-[#FDFBF7] shadow-xl flex flex-col"
+              transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
+              className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-[120] bg-white shadow-2xl flex flex-col rounded-l-2xl overflow-hidden"
             >
               {/* Header del Menú */}
-              <div className="flex justify-between items-center p-6 border-b border-stone-200">
-                <span className="text-sm font-bold text-stone-400 uppercase tracking-widest">
+              <div className="flex justify-between items-center p-6 border-b border-gray-100 bg-gray-50/50">
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
                   Navegación
                 </span>
                 <Button
                   variant="ghost"
                   onClick={() => setOpen(false)}
-                  className="p-2 h-auto hover:bg-stone-100"
+                  className="size-10 p-0 rounded-lg bg-white border border-gray-200 hover:bg-gray-100 text-slate-600 transition-all"
                 >
-                  <X className="size-6 text-stone-800" />
+                  <X className="size-5" />
                 </Button>
               </div>
 
-              {/* Enlaces de Secciones - Hover caramelo */}
-              <ul className="flex flex-col p-4 flex-1">
+              {/* Enlaces de Sección */}
+              <ul className="flex flex-col p-6 flex-1 gap-3 overflow-y-auto">
                 {sections.map((sec) => {
                   const isActive = activeSection === sec.id;
                   return (
@@ -104,17 +106,19 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ sections, activeSection }) => {
                       <button
                         onClick={() => handleScroll(sec.id)}
                         className={cn(
-                          "w-full flex items-center justify-between p-4 text-lg font-bold transition-all rounded-lg",
+                          "w-full flex items-center justify-between p-4 text-sm font-bold uppercase tracking-widest transition-all rounded-xl",
                           isActive
-                            ? "bg-amber-50 text-amber-800"
-                            : "text-stone-700 active:bg-stone-100",
+                            ? "bg-blue-50 text-primary"
+                            : "bg-transparent text-gray-500 hover:bg-gray-50",
                         )}
                       >
                         {sec.label}
                         <ChevronRight
                           className={cn(
-                            "size-5 opacity-30",
-                            isActive && "opacity-100",
+                            "size-4 transition-transform",
+                            isActive
+                              ? "opacity-100 translate-x-1 text-primary"
+                              : "opacity-30",
                           )}
                         />
                       </button>
@@ -123,23 +127,23 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ sections, activeSection }) => {
                 })}
               </ul>
 
-              {/* Footer del Menú con Contacto Directo */}
-              <div className="p-6 bg-stone-100/50 space-y-4 border-t border-stone-200">
+              {/* Footer del Menú con CTA - Azul Intenso */}
+              <div className="p-8 bg-[#0f172a] text-white space-y-6 mt-auto">
                 <div className="space-y-1">
-                  <p className="text-[10px] font-bold text-stone-500 uppercase tracking-widest">
-                    Local en Gualeguaychú
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    Atención en Gualeguaychú
                   </p>
-                  <p className="text-sm font-semibold text-stone-800">
-                    Lunes a Sábado — 9:00 a 20:00
+                  <p className="text-sm font-bold text-white">
+                    Lun a Vie: 08:00 a 17:00 hs
                   </p>
                 </div>
 
                 <Button
-                  className="w-full h-14 bg-stone-800 text-[#FDFBF7] font-bold rounded-md hover:bg-stone-700 transition-all flex items-center justify-center gap-2 shadow-sm"
-                  onClick={() => handleScroll("contact")}
+                  className="w-full h-14 bg-primary text-white font-bold uppercase text-[10px] tracking-widest rounded-xl hover:bg-blue-500 transition-colors flex items-center justify-center gap-3 shadow-lg active:scale-95"
+                  onClick={() => handleScroll("catalog")}
                 >
-                  <ShoppingBag className="size-4" />
-                  Hacer Pedido
+                  <Calculator className="size-4" />
+                  Pedir Presupuesto
                 </Button>
               </div>
             </motion.div>

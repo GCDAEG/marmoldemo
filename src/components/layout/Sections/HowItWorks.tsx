@@ -1,34 +1,34 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
-import { ShoppingBag, MessageCircle, MapPin } from "lucide-react";
+import { motion, Variants } from "framer-motion";
+import { Calculator, Ruler, Wrench } from "lucide-react";
 import { Section } from "@/components/layout/Section";
 
 const steps = [
   {
     id: 1,
-    title: "Armá tu Selección",
+    title: "Cotización del Material",
     description:
-      "Explorá nuestro catálogo y sumá tus alfajores favoritos. Podés armar docenas surtidas o elegir por unidad.",
-    icon: ShoppingBag,
+      "Explorá nuestro catálogo de piedras naturales y sintéticas. Seleccioná tus favoritas para armar un presupuesto inicial estimado.",
+    icon: Calculator,
   },
   {
     id: 2,
-    title: "Envianos un WhatsApp",
+    title: "Medición en Obra",
     description:
-      "Con un solo clic nos mandás tu pedido. Te confirmamos la disponibilidad y el total a abonar en el momento.",
-    icon: MessageCircle,
+      "Nos acercamos a tu domicilio en Gualeguaychú y zona para tomar medidas exactas, asegurando que cada corte encaje a la perfección.",
+    icon: Ruler,
   },
   {
     id: 3,
-    title: "Retirá y Disfrutá",
+    title: "Corte e Instalación",
     description:
-      "Pasá a buscar tu cajita por nuestro local en Gualeguaychú, o coordinamos el envío para que lleguen súper frescos.",
-    icon: MapPin,
+      "Procesamos la placa en nuestro taller y realizamos la instalación profesional. Juntas invisibles y un acabado listo para toda la vida.",
+    icon: Wrench,
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -38,29 +38,29 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
 };
 
 const HowItWorks = () => {
   return (
     <Section
-      id="como-comprar"
+      id="como-trabajamos"
       height="content"
-      className="py-24 bg-background border-b border-border overflow-hidden"
+      className="bg-slate-50 border-b border-border"
     >
-      <div className="container mx-auto px-6 max-w-6xl">
-        <div className="text-center mb-16">
-          <span className="text-sm font-bold text-primary uppercase tracking-widest mb-2 block">
-            Simple y Rápido
+      <div className="max-w-300 mx-auto w-full">
+        <div className="text-center mb-16 md:mb-20">
+          <span className="text-xs font-bold text-primary uppercase tracking-widest mb-3 block">
+            Nuestro Proceso
           </span>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground">
-            ¿Cómo hacer tu pedido?
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
+            ¿Cómo es trabajar con nosotros?
           </h2>
         </div>
 
@@ -68,10 +68,11 @@ const HowItWorks = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="relative grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8"
+          viewport={{ once: true, margin: "-50px" }}
+          className="relative grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-12"
         >
-          <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-[2px] bg-border -z-10" />
+          {/* Línea conectora (Oculta en móviles, estilo SaaS suave) */}
+          <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-[2px] bg-blue-100/50 -z-10" />
 
           {steps.map((step) => (
             <motion.div
@@ -79,19 +80,20 @@ const HowItWorks = () => {
               variants={itemVariants}
               className="relative flex flex-col items-center text-center group"
             >
-              <div className="w-24 h-24 bg-white rounded-full border-4 border-border shadow-sm flex items-center justify-center mb-6 relative z-10 group-hover:border-primary/30 group-hover:scale-105 transition-all duration-300">
-                <div className="absolute inset-0 bg-primary/5 rounded-full" />
-                <step.icon className="size-8 text-primary" />
+              {/* Contenedor del Ícono - Estilo SaaS Moderno */}
+              <div className="w-24 h-24 bg-white border border-gray-100 shadow-sm flex items-center justify-center mb-6 relative z-10 group-hover:border-blue-200 group-hover:shadow-md transition-all duration-300 rounded-2xl">
+                <step.icon className="size-10 text-primary" strokeWidth={1.5} />
 
-                <div className="absolute -top-1 -right-1 size-8 bg-foreground text-background rounded-full flex items-center justify-center text-sm font-bold shadow-md">
+                {/* Insignia del Número de Paso */}
+                <div className="absolute -top-3 -right-3 size-8 bg-primary text-white rounded-lg flex items-center justify-center text-sm font-bold shadow-sm">
                   {step.id}
                 </div>
               </div>
 
-              <h3 className="text-xl font-bold text-foreground mb-3">
+              <h3 className="text-xl font-black text-slate-900 mb-3">
                 {step.title}
               </h3>
-              <p className="text-foreground/70 leading-relaxed max-w-xs">
+              <p className="text-gray-500 leading-relaxed max-w-sm font-medium text-sm">
                 {step.description}
               </p>
             </motion.div>

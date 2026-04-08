@@ -19,7 +19,12 @@ devIndicators: false,
       {
         protocol:'https',
         hostname:'placehold.co'
+      },
+      {
+        protocol:'https',
+        hostname:'molinsdesign.com'
       }
+      
     ],
   },
 };

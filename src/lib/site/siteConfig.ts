@@ -1,41 +1,48 @@
-// /src/lib/config/tuwebhoy-marmol.ts
+// /src/lib/config/marmoles-gchu-config.ts
 
 export const siteConfig = {
   // 1. Identidad Visual y Marca
   brand: {
-    name: "EJEMPLO",
-    suffix: "ARG", // O "Gchú"
+    name: "MÁRMOLES Y GRANITOS",
+    suffix: "Gualeguaychú", 
     logo: "/logos/marmoles-logo.png",
-    theme: "elegant", 
+    theme: "monolithic-elegant", 
     colors: {
-      primary: "#2563eb",   // Azul que transmite confianza y construcción
-      secondary: "#4b5563", // Gris neutro para textos
-      accent: "#f3f4f6"     // Fondo sutil
+      primary: "#1F2937",   // Gris Grafito: Sólido, elegante y técnico (como el granito Negro Absoluto)
+      secondary: "#F3F4F6", // Gris Piedra: Un fondo neutro que resalta las vetas de los materiales
+      accent: "#B45309"     // Bronce/Óxido: Da un toque de lujo y contrasta perfecto con los grises
     }
   },
 
   // 2. Textos Principales (Landing Page)
   hero: {
-    badge: "text of the printing and typesettin",
-    title: "Lorem Ipsum is simply dummy text of",
-    subtitle: " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
-    buttonText: "remaining essentially unchanged",
-    bgImage: "/images/hero-marmol.jpg", 
-    
-    // Estas categorías se usan en los filtros del catálogo y en la marquesina del Footer
-    
+    badge: "Elegancia en Piedra",
+    title: "Diseño y durabilidad para tus espacios",
+    subtitle: "Especialistas en mesadas, revestimientos y trabajos a medida. Materiales nacionales e importados con instalación profesional garantizada.",
+    buttonText: "Ver Materiales",
+    // Foto de una cocina moderna con una gran isla de mármol/cuarzo
+    bgImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80", 
   },
-categories: ["Todos", "Ejemplo 1", "Ejemplo 2"],
+
+  // Filtros dinámicos orientados al rubro de la piedra
+  categories: [
+    "Todos", 
+    "Granitos Nacionales", 
+    "Granitos Importados", 
+    "Mármoles", 
+    "Cuarzos y Sintéticos"
+  ],
+
   // 3. Funcionalidades y Datos Comerciales
   features: {
     hasFilters: true,
-    hasCart: true,
-    whatsappNumber: "5493446123456", // Reemplazar por el del cliente
-    deliveryInfo: "Medición, corte e instalación en Gualeguaychú y zona de influencia.",
+    hasCart: true, // Funciona como un "Armador de Presupuestos"
+    whatsappNumber: "5493446000000", // Reemplazar por el número real
+    deliveryInfo: "Medición en obra e instalación en Gualeguaychú y zonas aledañas.",
     openingHours: "Lun a Vie: 08:00 a 17:00 / Sáb: 08:30 a 12:30"
   },
 
   // 4. CONEXIÓN A LA BASE DE DATOS (Google Sheets)
-  // URL generada desde Google Apps Script para este cliente específico
+  // URL específica del Apps Script para este proyecto
   databaseUrl: "https://script.google.com/macros/s/AKfycbwUm-Wb2BDf8ltibLk4mqkMc2rBwAeSutjZyWbkGfm85hjZcICG_u6yYAw3bG37bDZJ/exec",
 };
