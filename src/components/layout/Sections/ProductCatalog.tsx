@@ -184,7 +184,7 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ posts }) => {
                           </span>
                           <div className="flex items-baseline gap-1">
                             <span className="text-2xl font-black text-slate-900">
-                              ${product.price.toLocaleString("es-AR")}
+                              ${Number(product.price).toLocaleString("es-AR")}
                             </span>
                             <span className="text-sm font-bold text-slate-900">
                               /m²

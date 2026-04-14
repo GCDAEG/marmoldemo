@@ -21,7 +21,9 @@ const options = { next: { revalidate: 30 } };
 export default async function Home() {
   const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
   return (
-    <main className={`min-h-screen w-full font-base bg-background `}>
+    <main
+      className={`min-h-screen w-full font-base bg-background overflow-x-hidden`}
+    >
       <HeroSection />
       {/* <RoomsSection /> */}
       {/* <ServiceSection /> */}

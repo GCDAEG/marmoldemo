@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { NavSection } from "@/lib/sections";
 import Link from "next/link";
-import { X, Menu, Calculator, ChevronRight, Gem } from "lucide-react";
+import { X, Menu, Calculator, ChevronRight } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -36,17 +36,17 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ sections, activeSection }) => {
   return (
     <>
       {/* HEADER MÓVIL ESTÁNDAR - Estilo SaaS Clean */}
-      <nav className="fixed top-0 left-0 w-full h-20 z-[100] flex items-center px-5 bg-white/90 backdrop-blur-md border-b border-gray-100 lg:hidden transition-all">
-        <div className="w-full flex justify-between items-center max-w-[1200px] mx-auto">
+      <nav className="w-full h-20 flex items-center bg-white/90 backdrop-blur-md border-b border-gray-100 lg:hidden transition-all px-4">
+        <div className="w-full flex justify-between items-center max-w-300 mx-auto">
           {/* LOGO - Tipografía más chica (text-base) y compacta */}
           <Link
             href="/"
             className="text-base font-black tracking-tight text-slate-900 flex items-center gap-2.5 uppercase"
           >
-            <div className="bg-blue-50 text-primary p-1.5 rounded-md border border-blue-100 shadow-sm">
+            {/* <div className="bg-blue-50 text-primary p-1.5 rounded-md border border-blue-100 shadow-sm">
               <Gem className="size-4" strokeWidth={2.5} />
-            </div>
-            {brand.name || "MÁRMOLES"}
+            </div> */}
+            <h2 className="text-md">{brand.name || "MÁRMOLES"}</h2>
           </Link>
 
           <div className="flex items-center gap-1">
@@ -72,7 +72,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ sections, activeSection }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 z-[110] bg-slate-900/40 backdrop-blur-sm min-h-screen"
+              className="fixed inset-0 z-110 bg-slate-900/40 backdrop-blur-sm min-h-screen"
             />
 
             {/* Panel del Menú - Estilo App */}
@@ -81,7 +81,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ sections, activeSection }) => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
-              className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-[120] bg-white shadow-2xl flex flex-col rounded-l-2xl overflow-hidden"
+              className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-120 bg-white shadow-2xl flex flex-col rounded-l-2xl overflow-hidden"
             >
               {/* Header del Menú */}
               <div className="flex justify-between items-center p-6 border-b border-gray-100 bg-gray-50/50">

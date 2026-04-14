@@ -34,6 +34,9 @@ button {
 }
 
 @layer base {
+  html{
+    @apply overflow-x-hidden
+  }
   body {
     @apply bg-background text-foreground antialiased;
     /* Tipografía Sans-serif para toda la web (Inter o Roboto funcionan perfecto para esto) */
